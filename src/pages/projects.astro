@@ -1,5 +1,5 @@
 ---
-
+const pageTitle = "Projects";
 ---
 
 <html lang="en">
@@ -9,14 +9,14 @@
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>Charlie</title>
+    <title>Charlie - {pageTitle}</title>
   </head>
   <body>
     <a href="/">Home</a>
     <a href="/about/">About</a>
     <a href="/projects/">Projects</a>
 
-    <h1>Projects</h1>
+    <h1>{pageTitle}</h1>
 
     <p>This is where I will post my projects</p>
 
