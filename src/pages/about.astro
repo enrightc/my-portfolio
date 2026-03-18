@@ -1,5 +1,23 @@
 ---
 const pageTitle = "About Me";
+
+const identity = {
+  firstName: "Charlie",
+  lastName: "Enright",
+  Location: "Wales, UK",
+  occupation: "aspiring web developer",
+};
+
+const skills = [
+  "HTML",
+  "CSS",
+  "JavaScript",
+  "React",
+  "Python",
+  "Django",
+  "GIS",
+  "PostGreSQL",
+];
 ---
 
 <html lang="en">
@@ -18,9 +36,13 @@ const pageTitle = "About Me";
 
     <h1>{pageTitle}</h1>
     <p>
-      Hi, I’m Charlie Enright – An Aspiring Full-Stack Web Developer passionate
-      about using technology to make the past more accessible and the present
-      more intuitive.
+      Hi, I’m {identity.firstName} – An {identity.occupation} passionate about using
+      technology to make the past more accessible and the present more intuitive.
     </p>
+
+    <p>My skills are:</p>
+    <ul>
+      {skills.map((skill) => <li>{skill}</li>)}
+    </ul>
   </body>
 </html>
