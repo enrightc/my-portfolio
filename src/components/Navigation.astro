@@ -1,3 +1,12 @@
-<a href="/">Home</a>
-<a href="/about/">About</a>
-<a href="/projects/">Projects</a>
+---
+const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname.slice(1); // remove the first "/"
+---
+
+<div id="main-menu" class="nav-links">
+  <a class={currentPath === "" ? "active" : ""} href="/">Home</a>
+  <a class={currentPath === "about/" ? "active" : ""} href="/about/">About</a>
+  <a class={currentPath === "projects/" ? "active" : ""} href="/projects/"
+    >Projects</a
+  >
+</div>
