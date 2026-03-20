@@ -1,6 +1,5 @@
 ---
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 
 import "../styles/global.css";
 
@@ -28,64 +27,45 @@ const skills = [
 const skillColor = "white";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Charlie - {pageTitle}</title>
+<style define:vars={{ skillColor }}>
+  .container {
+    font-family: system-ui, sans-serif;
+    line-height: 1.6;
+  }
 
-    <style define:vars={{ skillColor }}>
-      .container {
-        font-family: system-ui, sans-serif;
-        line-height: 1.6;
-      }
+  .intro {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+  }
+  .skills {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+  }
+  .skills li {
+    background: #4c7fe5;
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    text-align: centre;
+    color: var(--skillColor);
+  }
+</style>
 
-      .intro {
-        font-size: 1.1rem;
-        margin-bottom: 1.5rem;
-        color: #333;
-      }
-      .skills {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-        gap: 0.5rem;
-        list-style: none;
-        padding: 0;
-      }
-      .skills li {
-        background: #4c7fe5;
-        padding: 0.5rem 0.75rem;
-        border-radius: 6px;
-        text-align: centre;
-        color: var(--skillColor);
-      }
-    </style>
-  </head>
+<BaseLayout>
+  <main class="container">
+    <h1>{pageTitle}</h1>
+    <p class="intro">
+      Hi, I’m {identity.firstName} – An {identity.occupation} passionate about using
+      technology to make the past more accessible and the present more intuitive.
+    </p>
 
-  <body>
-    <Header />
+    <h2>Skills</h2>
 
-    <main class="container">
-      <h1>{pageTitle}</h1>
-      <p class="intro">
-        Hi, I’m {identity.firstName} – An {identity.occupation} passionate about using
-        technology to make the past more accessible and the present more intuitive.
-      </p>
-
-      <h2>Skills</h2>
-
-      <ul class="skills">
-        {skills.map((skill) => <li>{skill}</li>)}
-      </ul>
-    </main>
-
-    <Footer />
-
-    <script>
-      import "../scripts/menu.js";
-    </script>
-  </body>
-</html>
+    <ul class="skills">
+      {skills.map((skill) => <li>{skill}</li>)}
+    </ul>
+  </main>
+</BaseLayout>

@@ -1,41 +1,22 @@
 ---
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 import "../styles/global.css";
 
 const pageTitle = "Projects";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Charlie - {pageTitle}</title>
-  </head>
-  <body>
-    <Header />
+<BaseLayout>
+  <main class="container">
+    <h1>{pageTitle}</h1>
 
-    <main class="container">
-      <h1>{pageTitle}</h1>
+    <p>This is where I will post my projects</p>
 
-      <p>This is where I will post my projects</p>
-
-      <ul>
-        <li><a href="/projects/project-1/">The Gourmet Cake Club</a></li>
-        <li><a href="/projects/project-2/">Gotham's Dark Decisions</a></li>
-        <li>
-          <a href="/projects/project-3/">LidarFind: The Welsh LiDAR Portal</a>
-        </li>
-      </ul>
-    </main>
-
-    <Footer />
-
-    <script>
-      import "../scripts/menu.js";
-    </script>
-  </body>
-</html>
+    <ul>
+      <li><a href="/projects/project-1/">The Gourmet Cake Club</a></li>
+      <li><a href="/projects/project-2/">Gotham's Dark Decisions</a></li>
+      <li>
+        <a href="/projects/project-3/">LidarFind: The Welsh LiDAR Portal</a>
+      </li>
+    </ul>
+  </main>
+</BaseLayout>
