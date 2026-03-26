@@ -1,0 +1,47 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import "../../styles/global.css";
+
+const allProjects = Object.values(
+  import.meta.glob("../projects/*.md", { eager: true }),
+);
+
+const tags = [
+  ...new Set(allProjects.map((post: any) => post.frontmatter.tags).flat()),
+];
+---
+
+<style>
+  a {
+    color: #00539f;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    margin: 0.25em;
+    border: dotted 1px #a1a1a1;
+    border-radius: 0.5em;
+    padding: 0.5em 1em;
+    font-size: 1.15em;
+    background-color: #f8fcfd;
+  }
+</style>
+
+<BaseLayout>
+  <main class="container">
+    <h1>Tag Index</h1>
+    <div class="tags">
+      {
+        tags.map((tag) => (
+          <p class="tag">
+            <a href={`/tags/${tag}`}>{tag}</a>
+          </p>
+        ))
+      }
+    </div>
+  </main>
+</BaseLayout>
