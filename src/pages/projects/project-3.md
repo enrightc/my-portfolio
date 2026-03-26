@@ -1,4 +1,5 @@
 ---
+layout: ../../layouts/MarkdownPostLayout.astro
 title: "LiDARFind: The Welsh LiDAR Portal"
 pubDate: July 2024
 description: ""
@@ -17,7 +18,3 @@ tags:
     "Leaflet.js",
   ]
 ---
-
-# LiDARFind: The Welsh LiDAR Portal
-
-Published: July 2024

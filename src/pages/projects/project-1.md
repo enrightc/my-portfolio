@@ -1,4 +1,5 @@
 ---
+layout: ../../layouts/MarkdownPostLayout.astro
 title: "The Gourmet Cake Club"
 pubDate: January 2024
 description: "A user-centric, three-page frontend web application designed for cake enthusiasts. Built with a focus on responsive design, accessibility, and intuitive navigation, it delivers a visually appealing and engaging experience for users."
@@ -6,11 +7,9 @@ image:
   url: "/images/projects/gourmet-cake-club.webp"
   alt: "Responsive website preview of the Gourmet Cake Club displayed across desktop, laptop, tablet, and mobile devices, showing a dark-themed homepage with a cake preparation hero image and centred title overlay."
 tags: ["HTML", "CSS", "Mobile-first"]
+github: "https://github.com/enrightc/The-Gourmet-Cake-Club"
+livesite: "https://enrightc.github.io/The-Gourmet-Cake-Club/"
 ---
-
-# The Gourmet Cake Club
-
-Published: January 2024
 
 ## overview
 
