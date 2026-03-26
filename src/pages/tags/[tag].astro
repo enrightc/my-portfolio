@@ -41,7 +41,7 @@ const filteredProjects = projects.filter((project: any) =>
   <p>Posts tagged with {tag}</p>
   <ul>
     {
-      projects.map((post: any) => (
+      filteredProjects.map((post: any) => (
         <ProjectList url={post.url} title={post.frontmatter.title} />
       ))
     }
