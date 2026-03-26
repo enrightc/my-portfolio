@@ -1,22 +1,28 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import ProjectList from "../components/ProjectList.astro";
 import "../styles/global.css";
 
 const pageTitle = "Projects";
+
+const allProjects = Object.values(
+  import.meta.glob("./projects/*.md", { eager: true }),
+); // this will give us an array of all the markdown files in the posts directory, with their frontmatter and content
 ---
 
 <BaseLayout>
   <main class="container">
     <h1>{pageTitle}</h1>
 
-    <p>This is where I will post my projects</p>
-
     <ul>
-      <li><a href="/projects/project-1/">The Gourmet Cake Club</a></li>
-      <li><a href="/projects/project-2/">Gotham's Dark Decisions</a></li>
-      <li>
-        <a href="/projects/project-3/">LidarFind: The Welsh LiDAR Portal</a>
-      </li>
+      {
+        allProjects.map((project: any) => (
+          <ProjectList url={project.url} title={project.frontmatter.title} />
+        ))
+      }
+      <!-- this will loop through all the posts and create a list item for each one, with a link to the post and the title of the post -->
     </ul>
+
+    <p>This is where I will post my projects</p>
   </main>
 </BaseLayout>
