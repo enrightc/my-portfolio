@@ -8,13 +8,13 @@ image:
   alt: "Welsh LiDAR Portal shown across multiple devices with terrain visualisation and interactive map."
 tags:
   [
-    "HTML",
-    "CSS",
-    "Bootstrap",
-    "Python",
-    "Flask",
-    "MongoDB",
-    "JavaScript",
-    "Leaflet.js",
+    "html",
+    "css",
+    "bootstrap",
+    "python",
+    "flask",
+    "mongodb",
+    "javascript",
+    "leaflet",
   ]
 ---

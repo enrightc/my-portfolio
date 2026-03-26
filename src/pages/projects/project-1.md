@@ -6,7 +6,7 @@ description: "A user-centric, three-page frontend web application designed for c
 image:
   url: "/images/projects/gourmet-cake-club.webp"
   alt: "Responsive website preview of the Gourmet Cake Club displayed across desktop, laptop, tablet, and mobile devices, showing a dark-themed homepage with a cake preparation hero image and centred title overlay."
-tags: ["HTML", "CSS", "Mobile-first"]
+tags: ["html", "css", "mobile-first"]
 github: "https://github.com/enrightc/The-Gourmet-Cake-Club"
 livesite: "https://enrightc.github.io/The-Gourmet-Cake-Club/"
 ---

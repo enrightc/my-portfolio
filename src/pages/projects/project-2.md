@@ -6,5 +6,5 @@ description: "A dynamic, interactive frontend web experience that immerses users
 image:
   url: "/images/projects/gotham-dark-decisions.webp"
   alt: "“Responsive web app interface titled ‘Gotham’s Dark Decisions’ displayed across desktop, laptop, and tablet devices, featuring a dark cityscape background with a centred modal and start button.”"
-tags: ["HTML", "CSS", "JavaScript"]
+tags: ["html", "css", "javascript"]
 ---
