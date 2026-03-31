@@ -1,7 +1,6 @@
 ---
-layout: ../../layouts/MarkdownPostLayout.astro
 title: "LiDARFind: The Welsh LiDAR Portal"
-pubDate: July 2024
+pubDate: 2024-07-01
 description: ""
 image:
   url: "/images/projects/lidarfind.webp"

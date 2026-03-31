@@ -1,13 +1,12 @@
 ---
+import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ProjectList from "../components/ProjectList.astro";
 import "../styles/global.css";
 
 const pageTitle = "Projects";
 
-const allProjects = Object.values(
-  import.meta.glob("./projects/*.md", { eager: true }),
-); // this will give us an array of all the markdown files in the posts directory, with their frontmatter and content
+const allProjects = await getCollection("project");
 ---
 
 <BaseLayout>
@@ -17,7 +16,10 @@ const allProjects = Object.values(
     <ul>
       {
         allProjects.map((project: any) => (
-          <ProjectList url={project.url} title={project.frontmatter.title} />
+          <ProjectList
+            url={`/projects/${project.id}/`}
+            title={project.data.title}
+          />
         ))
       }
       <!-- this will loop through all the posts and create a list item for each one, with a link to the post and the title of the post -->

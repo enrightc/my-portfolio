@@ -1,13 +1,12 @@
 ---
+import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import "../../styles/global.css";
 
-const allProjects = Object.values(
-  import.meta.glob("../projects/*.md", { eager: true }),
-);
+const allProjects = await getCollection("project");
 
 const tags = [
-  ...new Set(allProjects.map((post: any) => post.frontmatter.tags).flat()),
+  ...new Set(allProjects.map((project: any) => project.data.tags).flat()),
 ];
 ---
 
@@ -38,7 +37,7 @@ const tags = [
       {
         tags.map((tag) => (
           <p class="tag">
-            <a href={`/tags/${tag}`}>{tag}</a>
+            <a href={`/tags/${tag}/`}>{tag}</a>
           </p>
         ))
       }

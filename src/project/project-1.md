@@ -1,7 +1,6 @@
 ---
-layout: ../../layouts/MarkdownPostLayout.astro
 title: "The Gourmet Cake Club"
-pubDate: January 2024
+pubDate: 2024-01-23
 description: "A user-centric, three-page frontend web application designed for cake enthusiasts. Built with a focus on responsive design, accessibility, and intuitive navigation, it delivers a visually appealing and engaging experience for users."
 image:
   url: "/images/projects/gourmet-cake-club.webp"

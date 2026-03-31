@@ -1,28 +1,26 @@
 ---
+import { getCollection } from "astro:content";
+
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ProjectList from "../../components/ProjectList.astro";
 
 // A function to tell astro to build a page for each tag in the list of tags
 // The getStaticPaths function returns an array of page routes, and all of the pages at those routes will use the same template defined in the file.
 export async function getStaticPaths() {
-  const allProjects = Object.values(
-    import.meta.glob("../projects/*.md", { eager: true }),
-  ); // this will give an array of all the markdown files in the projects directory, with their frontmatter and content
-
-  return [
-    // this is a list for all the tags that to build a page for, with the tag as a parameter in the URL
-
-    { params: { tag: "html" }, props: { projects: allProjects } },
-    { params: { tag: "css" }, props: { projects: allProjects } },
-    { params: { tag: "javascript" }, props: { projects: allProjects } },
-    { params: { tag: "react" }, props: { projects: allProjects } },
-    { params: { tag: "django" }, props: { projects: allProjects } },
-    { params: { tag: "python" }, props: { projects: allProjects } },
-    { params: { tag: "mongodb" }, props: { projects: allProjects } },
-    { params: { tag: "flask" }, props: { projects: allProjects } },
-    { params: { tag: "leaflet" }, props: { projects: allProjects } },
-    { params: { tag: "bootstrap" }, props: { projects: allProjects } },
+  const allProjects = await getCollection("project"); // this will give an array of all the markdown files in the projects directory, with their frontmatter and content
+  const uniqueTags = [
+    ...new Set(allProjects.map((project) => project.data.tags).flat()),
   ];
+
+  return uniqueTags.map((tag) => {
+    const filteredProjects = allProjects.filter((project) =>
+      project.data.tags.includes(tag),
+    );
+    return {
+      params: { tag },
+      props: { projects: filteredProjects },
+    };
+  });
 }
 
 // Get the tag from the URL
@@ -30,10 +28,6 @@ export async function getStaticPaths() {
 const { tag } = Astro.params;
 
 const { projects } = Astro.props; // this will give a list of all the projects that are passed in the getStaticPaths function, so it can filter them by tag and display only the ones that have the tag in their frontmatter
-
-const filteredProjects = projects.filter((project: any) =>
-  project.frontmatter.tags?.includes(tag),
-); // this will filter the list of projects to only include the ones that have the tag in their frontmatter, and store it in a variable called filteredPosts
 ---
 
 <BaseLayout>
@@ -41,8 +35,11 @@ const filteredProjects = projects.filter((project: any) =>
   <p>Posts tagged with {tag}</p>
   <ul>
     {
-      filteredProjects.map((post: any) => (
-        <ProjectList url={post.url} title={post.frontmatter.title} />
+      projects.map((project) => (
+        <ProjectList
+          url={`/projects/${project.id}/`}
+          title={project.data.title}
+        />
       ))
     }
   </ul>
