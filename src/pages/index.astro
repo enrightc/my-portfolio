@@ -1,11 +1,14 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import "../styles/global.css";
+import Greeting from "../components/Greeting";
 ---
 
 <BaseLayout>
   <main class="container">
     <h1>Charlie Enright</h1>
     <h2>Web Developer</h2>
+
+    <!-- <Greeting client:load messages={["Hej", "Hallo", "Hola", "Habari"]} /> -->
   </main>
 </BaseLayout>
