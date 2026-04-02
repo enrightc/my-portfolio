@@ -1,5 +1,17 @@
 ---
-const { title, url } = Astro.props;
+const { title, url, img, alt, tags } = Astro.props;
 ---
 
-<li><a href={url}>{title}</a></li>
+<li class="project-card" data-tags={tags.join(" ")}>
+  <a href={url} class="project-link">
+    <img src={img} alt={alt} class="project-thumb" />
+
+    <div class="project-content">
+      <h2 class="project-title">{title}</h2>
+
+      <ul class="tag-list">
+        {tags.map((tag: string) => <li class="tag">{tag}</li>)}
+      </ul>
+    </div>
+  </a>
+</li>

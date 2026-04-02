@@ -7,18 +7,37 @@ import "../styles/global.css";
 const pageTitle = "Projects";
 
 const allProjects = await getCollection("project");
+
+// Get every unique tag across all projects for the filter buttons.
+// flatMap pulls all tag arrays into one flat list, Set removes duplicates,
+// and [...] converts it back into a regular array we can loop over.
+const allTags = [...new Set(allProjects.flatMap((p: any) => p.data.tags))];
 ---
 
 <BaseLayout>
   <main class="container">
     <h1>{pageTitle}</h1>
 
-    <ul>
+    <div class="filter-buttons">
+      <button class="filter-btn active" data-filter="all">All</button>
+      {
+        allTags.map((tag: string) => (
+          <button class="filter-btn" data-filter={tag}>
+            {tag}
+          </button>
+        ))
+      }
+    </div>
+
+    <ul class="project-grid">
       {
         allProjects.map((project: any) => (
           <ProjectList
+            img={`${project.data.image.url}`}
+            alt={project.data.image.alt}
             url={`/projects/${project.id}/`}
             title={project.data.title}
+            tags={project.data.tags}
           />
         ))
       }
@@ -27,4 +46,38 @@ const allProjects = await getCollection("project");
 
     <p>This is where I will post my projects</p>
   </main>
+
+  <script>
+    // Grab all the filter buttons and all the project cards from the page
+    const buttons = document.querySelectorAll(".filter-btn");
+    const cards = document.querySelectorAll(".project-card");
+
+    // Loop through each button and attach a click listener to it
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        // Remove the 'active' highlight from ALL buttons first...
+        buttons.forEach((btn) => btn.classList.remove("active"));
+        // ...then add it back to just the one that was clicked
+        button.classList.add("active");
+
+        // Read the data-filter attribute from the clicked button (e.g. "html" or "all")
+        const filter = button.dataset.filter;
+
+        // Loop through every project card and decide whether to show or hide it
+        cards.forEach((card) => {
+          if (filter === "all") {
+            // If "All" was clicked, show every card
+            card.style.display = "block";
+          } else {
+            // Split the card's data-tags string back into an array
+            // e.g. "html css bootstrap" becomes ["html", "css", "bootstrap"]
+            const tags = card.dataset.tags.split(" ");
+
+            // Show the card if it has the tag, hide it if it doesn't
+            card.style.display = tags.includes(filter) ? "block" : "none";
+          }
+        });
+      });
+    });
+  </script>
 </BaseLayout>

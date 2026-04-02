@@ -25,7 +25,7 @@ h2 {
 }
 
 .container {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 2rem 1.5rem;
 }
@@ -120,4 +120,89 @@ html.dark {
 
 h1.dark {
     color: orange;
+}
+
+
+/* Project Grid */
+.project-grid {
+	list-style: none;
+	padding: 0;
+	margin: 2rem 0;
+
+	display: grid;
+	gap: 1.5rem;
+	grid-template-columns: repeat(auto-fit, minmax(260px, 320px));
+}
+
+.project-thumb {
+	width: 100%;
+	height: 200px;
+	object-fit: cover;
+}
+
+.project-card {
+	border: 1px solid #e2e8f0;
+	border-radius: 12px;
+	overflow: hidden;
+	background: white;
+}
+
+.project-content {
+	padding: 1rem;
+}
+
+.project-title {
+	margin: 0 0 0.75rem;
+}
+
+.tag-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+
+	display: flex;
+	gap: 0.5rem;
+	flex-wrap: wrap;
+}
+
+.tag {
+	padding: 0.3rem 1rem;
+	border-radius: 999px;
+	background: #8ba0e4;
+}
+
+.project-link {
+	display: block;
+	color: inherit;
+	text-decoration: none;
+	height: 100%;
+}
+
+/* Filter Buttons */
+.filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.filter-btn {
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  border: 2px solid #4c7fe5;
+  background: transparent;
+  color: #4c7fe5;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+  background: #4c7fe5;
+  color: white;
+}
+
+.filter-btn.active {
+  background: #4c7fe5;
+  color: white;
 }

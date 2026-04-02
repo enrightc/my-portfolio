@@ -4,6 +4,8 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ProjectList from "../../components/ProjectList.astro";
 
+import "../../styles/global.css";
+
 // A function to tell astro to build a page for each tag in the list of tags
 // The getStaticPaths function returns an array of page routes, and all of the pages at those routes will use the same template defined in the file.
 export async function getStaticPaths() {
@@ -31,16 +33,21 @@ const { projects } = Astro.props; // this will give a list of all the projects t
 ---
 
 <BaseLayout>
-  <h1>Tags</h1>
-  <p>Posts tagged with {tag}</p>
-  <ul>
-    {
-      projects.map((project) => (
-        <ProjectList
-          url={`/projects/${project.id}/`}
-          title={project.data.title}
-        />
-      ))
-    }
-  </ul>
+  <main class="container">
+    <h1>{tag}</h1>
+    <p>Projects tagged with {tag}</p>
+    <ul class="project-grid">
+      {
+        projects.map((project) => (
+          <ProjectList
+            url={`/projects/${project.id}/`}
+            title={project.data.title}
+            img={project.data.image.url}
+            alt={project.data.image.alt}
+            tags={project.data.tags}
+          />
+        ))
+      }
+    </ul>
+  </main>
 </BaseLayout>
