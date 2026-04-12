@@ -1,44 +1,109 @@
+:root {
+  --bg: #0d1117;
+  --surface: #161b22;
+  --surface2: #1c2333;
+  --border: #30363d;
+  --accent: #38bdf8;
+  --accent2: #818cf8;
+  --text: #e6edf3;
+  --muted: #8b949e;
+  --radius: 10px;
+  --font-sans: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'SFMono-Regular', 'Fira Code', 'Consolas', monospace;
+}
+
 html {
-	background-color: #f1f5f9;
+	box-sizing: border-box;
+	scroll-behavior: smooth;
+	background-color: var(--bg);
 	font-family: sans-serif;
+	color: var(--muted);
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
 }
 
 body {
 	margin: 0 auto;
-	padding: 1rem;
 	line-height: 1.5;
 }
 
-* {
-  	box-sizing: border-box;
+a {
+    color: var(--muted);
+}
+
+a:hover,
+a:focus {
+	color: var(--text);
+}
+
+.nav-links a.active {
+	color: var(--text);
 }
 
 h1 {
-    font-size: 4rem;
     margin-bottom: 1rem;
-    color: #4521a8;
+    color: var(--text);
 }
 
-h2 {
-    margin-top: 2rem;
-    font-size: 1.5rem;
+ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 2rem 1.5rem;
+    padding: 0rem 1.5rem;
+}
+
+.section {
+	padding: 5rem 0;
+}
+
+.section-label {
+	font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+}
+    
+.section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+}
+
+.section-divider {
+    width: 3rem;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+    margin-bottom: 2.5rem;
 }
 
 
 /* nav styles */
+header {
+	background: rgba(13, 17, 23, 0.92);
+	backdrop-filter: blur(12px);
+	border-bottom: 1px solid var(--border);
+	position: sticky;
+	top: 0;
+	z-index: 100;
+}
+
 .menu {
-	background-color: #0d0950;
 	border: none;
 	color: #fff;
 	font-size: 1.2rem;
 	font-weight: bold;
 	padding: 5px 10px;
+	background-color: transparent;
 }
 
 .nav-links {
@@ -56,29 +121,23 @@ h2 {
     font-weight: bold;
 	transition: background-color 0.2s ease, color 0.2s ease;
     text-transform: uppercase;
-    color: #0d0950;
 	border-radius: 10px;
 }
 
-.nav-links a:hover,
-.nav-links a:focus {
-	background-color: blue;
-	color: white
-}
 
-.nav-links a.active {
-	background-color: blue;
-	color: white;
-}
 
 :has(.menu[aria-expanded="true"]) .nav-links {
   	display: unset;
 }
 
+:has(.menu[aria-expanded="true"]) .menu {
+  color: transparent;
+}
+
 @media screen and (min-width: 636px) {
 	.nav-links {
 		margin-left: 5em;
-		display: block;
+		display: flex;
 		position: static;
 		width: auto;
 		background: none;

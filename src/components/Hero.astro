@@ -1,0 +1,50 @@
+---
+
+---
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid #30363d;
+    display: block;
+  }
+
+  .hero::after {
+    content: "";
+    position: absolute;
+    top: -10%;
+    right: -5%;
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(
+      circle,
+      rgba(56, 189, 248, 0.12) 0%,
+      transparent 70%
+    );
+    pointer-events: none;
+  }
+
+  .name-accent {
+    color: #38bdf8;
+  }
+</style>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-tag">Junior-Full-Stack-Developer</div>
+      <h1>
+        Hi I'm
+        <br />
+        <span class="name-accent">Charlie Enright</span>
+      </h1>
+      <p class="hero-sub">
+        I build <strong>data-driven web applications</strong> that help people explore
+        landscapes, heritage, and place — combining a background in <strong
+          >archaeology and GIS</strong
+        > with full-stack development. Based in Wales, UK.
+      </p>
+    </div>
+  </div>
+</section>
