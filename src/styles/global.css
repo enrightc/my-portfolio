@@ -36,10 +36,12 @@ a {
 a:hover,
 a:focus {
 	color: var(--text);
+	background: var(--surface);
 }
 
 .nav-links a.active {
 	color: var(--text);
+	background: var(--surface);
 }
 
 h1 {
@@ -108,12 +110,23 @@ nav {
 	padding: 0 1.5rem;
 	margin: 0 auto;
 	justify-content: space-between; 
+	height: 64px;
+}
+
+.nav-logo {
+	font-family: var(--font-mono);
+	font-size: 0.95rem;
+	font-weight: 600;
+	color: var(--text);
+}
+
+.nav-logo span {
+	color: var(--accent);
 }
 
 .sun[data-astro-cid-oemx5le4] {
   color: var(--accent);
 }
-
 
 .menu {
 	border: none;
@@ -136,10 +149,9 @@ nav {
     text-align: center;
     padding: 10px 0;
     text-decoration: none;
-    font-size: 1.2rem;
+    font-size: 0.875rem;
     font-weight: bold;
 	transition: background-color 0.2s ease, color 0.2s ease;
-    text-transform: uppercase;
 	border-radius: 10px;
 }
 
@@ -154,6 +166,7 @@ nav {
 @media screen and (min-width: 636px) {
 	.nav-links {
 		display: flex;
+		gap: 0.25rem;
 		position: static;
 		width: auto;
 		background: none;
@@ -161,7 +174,8 @@ nav {
 
 	.nav-links a {
 		display: inline-block;
-		padding: 15px 20px;
+		padding: 0.4rem 0.85rem;
+		border-radius: 6px;
 	}
 
 	.menu {
