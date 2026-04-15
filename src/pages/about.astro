@@ -10,24 +10,17 @@ const identity = {
   occupation: "aspiring web developer",
 };
 
-const skills = [
-  { type: "frontend", name: "HTML" },
-  { type: "frontend", name: "CSS" },
-  { type: "frontend", name: "JavaScript" },
-  { type: "frontend", name: "React" },
-  { type: "frontend", name: "jQuery" },
-  { type: "backend", name: "Python" },
-  { type: "backend", name: "Django" },
-  { type: "geospatial", name: "GIS" },
-  { type: "geospatial", name: "Leaflet" },
-  { type: "backend", name: "PostgreSQL" },
-  { type: "backend", name: "AWS S3" },
+const skillGroups = [
+  {
+    label: "//frontend",
+    items: ["HTML", "CSS", "JavaScript", "React", "jQuery"],
+  },
+  { label: "//backend", items: ["Python", "Django", "PostgreSQL", "AWS S3"] },
+  { label: "//geospatial", items: ["GIS", "Leaflet"] },
 ];
-
-const skillColor = "white";
 ---
 
-<style define:vars={{ skillColor }}>
+<style>
   .container {
     font-family: system-ui, sans-serif;
     line-height: 1.6;
@@ -63,28 +56,18 @@ const skillColor = "white";
 
     <h2>Skills</h2>
 
-    <ul class="skills">
-      {
-        skills
-          .filter((skill) => skill.type === "frontend")
-          .map((skill) => <li>{skill.name}</li>)
-      }
-    </ul>
+    {
+      skillGroups.map((group) => (
+        <div class="skills-group">
+          <p class="skills-group-label">{group.label}</p>
 
-    <ul class="skills">
-      {
-        skills
-          .filter((skill) => skill.type === "backend")
-          .map((skill) => <li>{skill.name}</li>)
-      }
-    </ul>
-
-    <ul class="skills">
-      {
-        skills
-          .filter((skill) => skill.type === "geospatial")
-          .map((skill) => <li>{skill.name}</li>)
-      }
-    </ul>
+          <ul class="skills-list">
+            {group.items.map((item) => (
+              <li class="skill-chip">{item}</li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
   </main>
 </BaseLayout>
