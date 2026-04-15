@@ -26,7 +26,8 @@ html {
 
 body {
 	margin: 0 auto;
-	line-height: 1.5;
+	line-height: 1.6;
+	font-family: var(--font-sans);
 }
 
 a {
@@ -212,7 +213,9 @@ h1.dark {
 }
 
 
+/* ---------------------*/
 /* Project Grid */
+/* ---------------------*/
 .project-grid {
 	list-style: none;
 	padding: 0;
