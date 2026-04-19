@@ -294,4 +294,44 @@ h1.dark {
 	height: 100%;
 }
 
+/* ---------------------*/
+/* Footer*/
+/* ---------------------*/
 
+
+footer {
+	border-top: 1px solid var(--border);
+    padding: 3rem 0 2rem;
+}
+
+.footer-inner {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1rem;	
+	text-align: center;
+}
+
+.footer-logo {
+	font-family: var(--font-mono);
+	color: var(--text);
+	font-size: 1rem;
+}
+
+.footer-logo span {
+	color: var(--accent);
+}
+
+.footer-tagline {
+	font-size: 0.9rem;
+	color: var(--muted);
+}
+
+.footer-links {
+	display: flex;
+	gap: 1.5rem;
+}
+
+.footer-copy {
+	opacity: 0.6;
+}
