@@ -56,14 +56,18 @@ ul {
 	margin: 0;
 }
 
+section {
+	padding: 5rem 0;
+}
+
+p strong {
+	color: var(--text);
+}
+
 .container {
     max-width: 1100px;
     margin: 0 auto;
     padding: 0rem 1.5rem;
-}
-
-.section {
-	padding: 5rem 0;
 }
 
 .section-label {
