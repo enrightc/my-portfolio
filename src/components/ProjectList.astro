@@ -1,5 +1,5 @@
 ---
-const { title, url, img, alt, tags } = Astro.props;
+const { title, url, img, alt, tags, description } = Astro.props;
 ---
 
 <li class="project-card" data-tags={tags.join(" ")}>
@@ -9,9 +9,13 @@ const { title, url, img, alt, tags } = Astro.props;
     <div class="project-content">
       <h2 class="project-title">{title}</h2>
 
-      <ul class="tag-list">
-        {tags.map((tag: string) => <li class="tag">{tag}</li>)}
-      </ul>
+      <!-- <p class="project-description">{description}</p> -->
+
+      <div class="project-footer">
+        <div class="tag-list">
+          {tags.map((tag: string) => <span class="tag-chip">{tag}</span>)}
+        </div>
+      </div>
     </div>
   </a>
 </li>

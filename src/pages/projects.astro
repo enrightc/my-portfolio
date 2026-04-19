@@ -13,42 +13,79 @@ const allProjects = await getCollection("project");
 const allTags = [...new Set(allProjects.flatMap((p: any) => p.data.tags))];
 ---
 
+<style>
+  /* Filter Buttons */
+  .filter-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .filter-chip {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    padding: 0.4rem 1rem;
+    border-radius: 999px;
+    border: 2px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .filter-chip:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(56, 189, 248, 0.07);
+  }
+
+  .filter-chip.active {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(56, 189, 248, 0.07);
+  }
+</style>
+
 <BaseLayout>
-  <main class="container">
-    <h1>{pageTitle}</h1>
+  <section>
+    <div class="container">
+      <p class="section-label">Projects</p>
+      <h2 class="section-title">{pageTitle}</h2>
+      <div class="section-divider"></div>
 
-    <div class="filter-buttons">
-      <button class="filter-btn active" data-filter="all">All</button>
-      {
-        allTags.map((tag: string) => (
-          <button class="filter-btn" data-filter={tag}>
-            {tag}
-          </button>
-        ))
-      }
+      <div class="filter-row">
+        <button class="filter-chip active" data-filter="all">All</button>
+        {
+          allTags.map((tag: string) => (
+            <button class="filter-chip" data-filter={tag}>
+              {tag}
+            </button>
+          ))
+        }
+      </div>
+
+      <ul class="project-grid">
+        {
+          allProjects.map((project: any) => (
+            <ProjectList
+              img={`${project.data.image.url}`}
+              alt={project.data.image.alt}
+              url={`/projects/${project.id}/`}
+              title={project.data.title}
+              tags={project.data.tags}
+              description={project.description}
+            />
+          ))
+        }
+        <!-- this will loop through all the posts and create a list item for each one, with a link to the post and the title of the post -->
+      </ul>
     </div>
-
-    <ul class="project-grid">
-      {
-        allProjects.map((project: any) => (
-          <ProjectList
-            img={`${project.data.image.url}`}
-            alt={project.data.image.alt}
-            url={`/projects/${project.id}/`}
-            title={project.data.title}
-            tags={project.data.tags}
-          />
-        ))
-      }
-      <!-- this will loop through all the posts and create a list item for each one, with a link to the post and the title of the post -->
-    </ul>
-
-    <p>This is where I will post my projects</p>
-  </main>
+  </section>
 
   <script>
     // Grab all the filter buttons and all the project cards from the page
-    const buttons = document.querySelectorAll(".filter-btn");
+    const buttons = document.querySelectorAll(".filter-chip");
     const cards = document.querySelectorAll(".project-card");
 
     // Loop through each button and attach a click listener to it
