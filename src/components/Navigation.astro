@@ -1,13 +1,13 @@
 ---
 const pathname = new URL(Astro.request.url).pathname;
 const currentPath = pathname.slice(1); // remove the first "/"
-
-import ThemeIcon from "./ThemeIcon.astro";
 ---
 
 <nav>
-  <!-- Logo -->
-  <div class="nav-logo">charlie<span>.</span>dev</div>
+  <!-- Burger Menu -->
+  <button aria-expanded="false" aria-controls="main-menu" class="menu">
+    Menu
+  </button>
 
   <!-- Nav links -->
   <ul id="main-menu" class="nav-links">
@@ -25,7 +25,85 @@ import ThemeIcon from "./ThemeIcon.astro";
     <li>
       <a class={currentPath === "tags/" ? "active" : ""} href="/tags/">Tags</a>
     </li>
-
-    <li><ThemeIcon /></li>
   </ul>
 </nav>
+
+<style>
+  .menu {
+    border: none;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 5px 10px;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+  .nav-links {
+    /* Hidden by default on mobile */
+    display: flex;
+    padding: 10px 0;
+    gap: 1rem;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition:
+      max-height 1s ease,
+      opacity 0.3s ease;
+
+    /* When shown, drop down below the header */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+
+    /* Stack links vertically with breathing room */
+    flex-direction: column;
+    padding-left: 1.5rem;
+
+    /* Match the header's dark bar look */
+    background: rgba(13, 17, 23, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
+    border-radius: 10px;
+  }
+
+  button[aria-expanded="true"] + .nav-links {
+    max-height: 300px;
+    opacity: 1;
+  }
+
+  @media screen and (min-width: 601px) {
+    .menu {
+      display: none;
+    }
+
+    .nav-links {
+      /* Back to inline layout, horizontal, visible */
+      display: flex;
+      max-height: none;
+      overflow: visible;
+      opacity: 1;
+      flex-direction: row;
+      gap: 1rem;
+
+      /* Undo the absolute positioning */
+      position: static;
+
+      /* Drop the dropdown chrome */
+      background: none;
+      backdrop-filter: none;
+      border-bottom: none;
+      padding: 0;
+    }
+  }
+</style>

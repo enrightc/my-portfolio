@@ -1,19 +1,13 @@
 ---
 import Navigation from "./Navigation.astro";
-import Menu from "./Menu.astro";
 import ThemeIcon from "./ThemeIcon.astro";
 ---
 
 <header>
-  <Menu />
-  <Navigation />
-</header>
+  <!-- Logo -->
+  <div class="nav-logo">charlie<span>.</span>dev</div>
 
-<style>
-  .header-controls {
-    display: flex;
-  }
-  .theme-icon {
-    margin-left: auto;
-  }
-</style>
+  <Navigation />
+
+  <div><ThemeIcon /></div>
+</header>
