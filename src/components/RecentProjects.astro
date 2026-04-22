@@ -1,0 +1,36 @@
+---
+import ProjectList from "../components/ProjectList.astro";
+
+const allProjects = await getCollection("project");
+
+const sortedProjects = allProjects.sort(
+  (a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate),
+);
+
+const recentProjects = sortedProjects.slice(0, 3);
+
+import { getCollection } from "astro:content";
+---
+
+<div class="container">
+  <p class="section-label">Projects</p>
+  <h2 class="section-title">Recent work</h2>
+  <div class="section-divider"></div>
+
+  <ul class="project-grid">
+    {
+      recentProjects.map((project) => (
+        <ProjectList
+          img={project.data.image.url}
+          alt={project.data.image.alt}
+          url={`/projects/${project.id}/`}
+          title={project.data.title}
+          tags={project.data.tags}
+          description={project.description}
+        />
+      ))
+    }
+  </ul>
+
+  <a href="/projects/" class="btn btn-primary view-all">View all projects →</a>
+</div>

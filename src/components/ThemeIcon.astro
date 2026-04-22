@@ -5,7 +5,7 @@
 <button id="themeToggle" aria-label="Toggle theme">
   <svg
     aria-hidden="true"
-    width="30px"
+    width="20px"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
   >
@@ -24,21 +24,32 @@
 
 <style>
   #themeToggle {
-    border: 0;
-    background: none;
+    border-radius: 6px;
+    border: 1px solid #30363d;
+    background: transparent;
+    cursor: pointer;
+    padding: 0.5rem 0.5rem;
   }
+
+  #themeToggle:hover,
+  focus {
+    border-radius: 6px;
+    border: 1px solid #30363d;
+    background: #161b22;
+  }
+
   .sun {
-    fill: black;
+    fill: var(--muted);
   }
   .moon {
-    fill: #8b949e;
+    fill: transparent;
   }
 
   :global(.dark) .sun {
     fill: transparent;
   }
   :global(.dark) .moon {
-    fill: white;
+    fill: var(--muted);
   }
 </style>
 

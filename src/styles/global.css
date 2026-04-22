@@ -48,15 +48,15 @@ a {
 
 a:hover,
 a:focus {
-	color: var(--muted);
-	background: var(--surface);
-	padding: 0px 10px;
+	color: var(--text);
+    background: var(--surface);
+    text-decoration: none;
 }
 
 .nav-links a.active {
 	color: var(--text);
-	background: var(--surface);
-	padding: 0px 10px;
+    background: var(--surface);
+    text-decoration: none;
 }
 
 h1 {
@@ -71,7 +71,7 @@ ul {
 }
 
 section {
-	padding: 5rem 0;
+	padding: 2.5rem 0;
 }
 
 p strong {
@@ -82,6 +82,8 @@ p strong {
     max-width: 1100px;
     margin: 0 auto;
     padding: 0rem 1.5rem;
+	font-family: system-ui, sans-serif;
+    line-height: 1.6;
 }
 
 .section-label {
@@ -123,8 +125,8 @@ p strong {
 	z-index: 100;
 	display: flex;
 	align-items: center;
-	gap: 0.5rem;
-	padding: 0 0.15rem;
+	gap: 5rem;
+	padding: 0 1.25rem;
 	height: 64px;
 }
 
@@ -134,7 +136,7 @@ nav {
 
 .nav-logo {
 	font-family: var(--font-mono);
-	font-size: 0.95rem;
+	font-size: 1rem;
 	font-weight: 600;
 	color: #e6edf3;;
 }
@@ -143,8 +145,84 @@ nav {
 	color: var(--accent);
 }
 
+.menu {
+    border: none;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 5px 10px;
+    background-color: transparent;
+    cursor: pointer;
+  }
 
+  .nav-links {
+    /* Hidden by default on mobile */
+    display: flex;
+    padding: 10px 0;
+    gap: 1rem;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition:
+      max-height 1s ease,
+      opacity 0.3s ease;
 
+    /* When shown, drop down below the header */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+
+    /* Stack links vertically with breathing room */
+    flex-direction: column;
+    padding-left: 1.5rem;
+
+    /* Match the header's dark bar look */
+    background: rgba(13, 17, 23, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+	padding: 0.6rem 1rem;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
+    border-radius: 10px;
+  }
+
+  button[aria-expanded="true"] + .nav-links {
+    max-height: 300px;
+    opacity: 1;
+  }
+
+  @media screen and (min-width: 601px) {
+    .menu {
+      display: none;
+    }
+
+    .nav-links {
+      /* Back to inline layout, horizontal, visible */
+      display: flex;
+      max-height: none;
+      overflow: visible;
+      opacity: 1;
+      flex-direction: row;
+      gap: 1.5rem;
+
+      /* Undo the absolute positioning */
+      position: static;
+
+      /* Drop the dropdown chrome */
+      background: none;
+      backdrop-filter: none;
+      border-bottom: none;
+      padding: 0;
+    }
+  }
 
 /* ---------------------*/
 /* Hero */
@@ -294,6 +372,183 @@ nav {
     width: 2px;
     height: 36px;
     background: linear-gradient(to bottom, var(--muted), transparent);
+  }
+
+/* ---------------------*/
+/* About Page */
+/* ---------------------*/
+
+	#about {
+		border-bottom: 1px solid var(--border);
+	}
+
+	.intro {
+		font-size: 1.1rem;
+		margin-bottom: 1.5rem;
+		line-height: 1.8rem;
+	}
+
+	.intro p {
+		margin-bottom: 1.8rem;
+	}
+
+	.skills {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+		gap: 0.5rem;
+		list-style: none;
+		padding: 0;
+	}
+
+	.skills li {
+		background: #4c7fe5;
+		padding: 0.5rem 0.75rem;
+		border-radius: 6px;
+		text-align: centre;
+		color: var(--skillColor);
+	}
+
+	.about-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 4rem;
+		align-items: start;
+	}
+
+	.qualification-badge {
+		display: flex;
+		gap: 2rem;
+		border: 1px solid var(--accent2);
+		background-color: rgba(129, 140, 248, 0.1);
+		border-radius: 6px;
+		margin-top: 2rem;
+		padding: 0.6rem 1rem;
+		align-items: center;
+	}
+
+	/* .qualification-badge:nth-child(odd) {
+		background-color: rgba(248, 113, 113, 0.1);
+		border: 1px solid rgba(248, 113, 113, 0.4);
+	} */
+
+	.qualification-icon::before {
+		content: "🎓";
+		font-size: 2rem;
+	}
+
+	.qualification {
+		min-width: 0;
+	}
+
+	.qualification-title {
+		color: var(--text);
+	}
+
+	.qualifcation-info {
+		display: flex;
+		color: var(--accent2);
+		font-family: var(--font-mono);
+		flex-wrap: wrap;
+	}
+
+	.separator {
+		padding: 0 0.5rem;
+	}
+
+	.skills-group {
+		margin-bottom: 1.5rem;
+	}
+
+	.skills-group-label {
+		font-family: var(--font-mono);
+		font-size: 0.72rem;
+		text-transform: uppercase;
+		letter-spacing: 0.1rem;
+		color: var(--muted);
+		margin-bottom: 0.6rem;
+	}
+
+	.skills-list {
+		display: flex;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+
+	.skill-chip {
+		font-family: var(--font-mono);
+		font-size: 1rem;
+		padding: 0.4rem 0.8rem;
+		border-radius: 4px;
+		background: var(--surface);
+		border: 1px solid var(--border);
+		color: var(--text);
+	}
+
+	.skill-chip.accent {
+		border-color: rgba(56, 189, 248, 0.3);
+		color: var(--accent);
+		background: rgba(56, 189, 248, 0.06);
+	}
+
+	.skill-chip.accent2 {
+		border-color: rgba(129, 140, 248, 0.3);
+		color: var(--accent2);
+		background: rgba(129, 140, 248, 0.06);
+	}
+
+	.skill-chip.geo {
+		border-color: rgba(74, 222, 128, 0.3);
+		color: #4ade80;
+		background: rgba(74, 222, 128, 0.06);
+	}
+
+	@media screen and (min-width: 636px) {
+		.about-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 2.5rem;
+		}
+	}
+
+/* ---------------------*/
+/* Recent Projects - Homepage */
+/* ---------------------*/
+.class-viewall
+
+
+/* ---------------------*/
+/* All Projects */
+/* ---------------------*/
+  /* Filter Buttons */
+  .filter-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .filter-chip {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    padding: 0.4rem 1rem;
+    border-radius: 999px;
+    border: 2px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .filter-chip:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(56, 189, 248, 0.07);
+  }
+
+  .filter-chip.active {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(56, 189, 248, 0.07);
   }
 
 

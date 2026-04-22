@@ -1,9 +1,20 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/Hero.astro";
-import Greeting from "../components/Greeting";
+import About from "../components/about.astro";
+import RecentProjects from "../components/RecentProjects.astro";
 ---
 
 <BaseLayout>
-  <Hero />
+  <section id="home">
+    <Hero />
+  </section>
+
+  <section id="about">
+    <About />
+  </section>
+
+  <section id="projects">
+    <RecentProjects />
+  </section>
 </BaseLayout>

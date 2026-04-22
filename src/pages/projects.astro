@@ -3,49 +3,19 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ProjectList from "../components/ProjectList.astro";
 
-const pageTitle = "Projects";
+const pageTitle = "Things I've Built";
 
 const allProjects = await getCollection("project");
+
+const sortedProjects = allProjects.sort(
+  (a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate),
+);
 
 // Get every unique tag across all projects for the filter buttons.
 // flatMap pulls all tag arrays into one flat list, Set removes duplicates,
 // and [...] converts it back into a regular array we can loop over.
 const allTags = [...new Set(allProjects.flatMap((p: any) => p.data.tags))];
 ---
-
-<style>
-  /* Filter Buttons */
-  .filter-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 3rem;
-  }
-
-  .filter-chip {
-    font-family: var(--font-mono);
-    font-size: 0.9rem;
-    padding: 0.4rem 1rem;
-    border-radius: 999px;
-    border: 2px solid var(--border);
-    background: transparent;
-    color: var(--muted);
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-
-  .filter-chip:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-    background: rgba(56, 189, 248, 0.07);
-  }
-
-  .filter-chip.active {
-    border-color: var(--accent);
-    color: var(--accent);
-    background: rgba(56, 189, 248, 0.07);
-  }
-</style>
 
 <BaseLayout>
   <section>
@@ -67,7 +37,7 @@ const allTags = [...new Set(allProjects.flatMap((p: any) => p.data.tags))];
 
       <ul class="project-grid">
         {
-          allProjects.map((project: any) => (
+          sortedProjects.map((project: any) => (
             <ProjectList
               img={`${project.data.image.url}`}
               alt={project.data.image.alt}
