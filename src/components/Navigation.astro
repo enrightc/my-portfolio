@@ -1,6 +1,14 @@
 ---
 const pathname = new URL(Astro.request.url).pathname;
 const isHomePage = pathname === "/";
+
+// Figure out which nav link should be active based on the URL.
+// On the homepage we leave this empty and let the scroll observer decide.
+let activeSection = "";
+if (!isHomePage) {
+  if (pathname.startsWith("/projects")) activeSection = "projects";
+  else if (pathname.startsWith("/tags")) activeSection = "tags";
+}
 ---
 
 <nav>
@@ -11,15 +19,51 @@ const isHomePage = pathname === "/";
 
   <!-- Nav links -->
   <ul id="main-menu" class="nav-links">
-    <li><a href="/">Home</a></li>
+    <li>
+      <a href={isHomePage ? "#home" : "/#home"}>Home</a>
+    </li>
     <li>
       <a href={isHomePage ? "#about" : "/#about"}>About</a>
     </li>
     <li>
-      <a href={isHomePage ? "#projects" : "/#projects"}>Projects</a>
+      <a
+        href={isHomePage ? "#projects" : "/projects/"}
+        class={activeSection === "projects" ? "active" : ""}>Projects</a>
     </li>
     <li>
-      <a href="/tags/">Tags</a>
+      <a href="/tags/" class={activeSection === "tags" ? "active" : ""}>Tags</a>
     </li>
   </ul>
 </nav>
+
+<script>
+  const navLinks = document.querySelectorAll(".nav-links a");
+  const sections = document.querySelectorAll("section[id]");
+
+  // Only treat a section as "active" when its content crosses
+  // roughly the middle of the viewport. This stops two sections
+  // being active at the same moment while scrolling.
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          navLinks.forEach((link) => link.classList.remove("active"));
+          const activeLink = document.querySelector(
+            `.nav-links a[href$="#${entry.target.id}"]`,
+          );
+          if (activeLink) {
+            activeLink.classList.add("active");
+          }
+        }
+      });
+    },
+    {
+      // Shrinks the observation area to a thin band near the
+      // middle of the screen. Top: -40% from top, Bottom: -55% from bottom.
+      rootMargin: "-40% 0px -55% 0px",
+      threshold: 0,
+    },
+  );
+
+  sections.forEach((section) => observer.observe(section));
+</script>
