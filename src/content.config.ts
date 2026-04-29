@@ -15,7 +15,10 @@ const project = defineCollection({
         url: z.string(),
         alt: z.string()
       }),
-      tags: z.array(z.string())
+      tags: z.array(z.string()),
+      github: z.string().optional(),
+      livesite: z.string().optional(),
+      minutes: z.string().optional(),
     })
 });
 // Export a single `collections` object to register your collection(s)

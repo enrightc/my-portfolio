@@ -8,6 +8,7 @@ image:
 tags: ["html", "css", "bootstrap"]
 github: "https://github.com/enrightc/The-Gourmet-Cake-Club"
 livesite: "https://enrightc.github.io/The-Gourmet-Cake-Club/"
+minutes: "3"
 ---
 
 ## overview
