@@ -2,6 +2,13 @@
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import "../styles/global.css";
+
+// Site-wide values used for the page title and social-share previews (Open Graph).
+const siteTitle = "Charlie Enright — Junior Full-Stack Developer";
+const siteDescription =
+  "Portfolio of Charlie Enright — a junior full-stack developer in Wales building data-driven web applications that explore landscape, heritage, and place.";
+// Astro.site is read from astro.config.mjs and gives us the absolute site URL.
+const ogImage = new URL("/images/og-image.png", Astro.site).toString();
 ---
 
 <html lang="en">
@@ -11,7 +18,24 @@ import "../styles/global.css";
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
-    <title>Charlie</title>
+    <meta name="description" content={siteDescription} />
+    <title>{siteTitle}</title>
+
+    <!-- Open Graph (Facebook, LinkedIn, WhatsApp, iMessage, Discord, etc.) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:title" content={siteTitle} />
+    <meta property="og:description" content={siteDescription} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Charlie Enright's portfolio website" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={siteTitle} />
+    <meta name="twitter:description" content={siteDescription} />
+    <meta name="twitter:image" content={ogImage} />
   </head>
 
   <body>
