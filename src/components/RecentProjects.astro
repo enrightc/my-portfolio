@@ -25,8 +25,8 @@ import { getCollection } from "astro:content";
           alt={project.data.image.alt}
           url={`/projects/${project.id}/`}
           title={project.data.title}
+          description={project.data.description}
           tags={project.data.tags}
-          description={project.description}
         />
       ))
     }

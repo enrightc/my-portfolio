@@ -44,7 +44,7 @@ const allTags = [...new Set(allProjects.flatMap((p: any) => p.data.tags))];
               url={`/projects/${project.id}/`}
               title={project.data.title}
               tags={project.data.tags}
-              description={project.description}
+              description={project.data.description}
             />
           ))
         }

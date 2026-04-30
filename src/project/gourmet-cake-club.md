@@ -5,7 +5,7 @@ description: "A user-centric, three-page frontend web application designed for c
 image:
   url: "/images/projects/gourmet-cake-club.webp"
   alt: "Responsive website preview of the Gourmet Cake Club displayed across desktop, laptop, tablet, and mobile devices, showing a dark-themed homepage with a cake preparation hero image and centred title overlay."
-tags: ["html", "css", "bootstrap"]
+tags: ["HTML", "CSS", "Bootstrap"]
 github: "https://github.com/enrightc/The-Gourmet-Cake-Club"
 livesite: "https://enrightc.github.io/The-Gourmet-Cake-Club/"
 minutes: "3"
@@ -82,5 +82,10 @@ The layout prioritises clarity, with consistent structure across pages to suppor
 ## what I learned
 
 - How to structure a multi-page website with consistent layout and navigation
+- How to apply a **mobile-first design approach** from the outset, ensuring the site
+  was fully responsive across all screen sizes
+- How to use **Bootstrap** for the first time — learning how its grid system and
+  pre-built components (such as the accordion and modal) can speed up development
+  and simplify responsive layouts
 - The importance of responsive design and testing across devices
 - How to balance visual design with accessibility
